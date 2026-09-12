@@ -6,7 +6,7 @@ CookiePilot turns natural-language requests into structured blockchain operation
 
 Instead of manually interacting with RPC endpoints, token mints, quote APIs, and blockchain tools, users can communicate with CookiePilot using requests such as:
 
-
+```text
 Check Cookie Chain health
 
 Show me staking information
@@ -16,7 +16,6 @@ Give me a quote for a $10 COOK to USDC swap
 Execute a $10 COOK to USDC swap
 
 ✨ Features
-
 
 🔌 MCP Integration
 
@@ -134,6 +133,7 @@ cookiepilot/
 └── README.md
 
 ▶️ Running CookiePilot
+
 cd ~/Projects/cookiepilot/server
 npm run dev
 
