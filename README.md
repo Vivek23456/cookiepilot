@@ -6,7 +6,7 @@ CookiePilot turns natural-language requests into structured blockchain operation
 
 Instead of manually interacting with RPC endpoints, token mints, quote APIs, and blockchain tools, users can communicate with CookiePilot using requests such as:
 
-```text
+
 Check Cookie Chain health
 
 Show me staking information
@@ -16,6 +16,8 @@ Give me a quote for a $10 COOK to USDC swap
 Execute a $10 COOK to USDC swap
 
 ✨ Features
+
+
 🔌 MCP Integration
 
 CookiePilot connects to the local cookie-mcp server through stdio.
@@ -53,6 +55,7 @@ Solana COOK currently uses the bridged SPL COOK token:
 USDC:
 
 EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+
 🔄 Trade Execution
 
 Explicit execution requests can be routed to the MCP trade tool.
@@ -208,7 +211,9 @@ npm run dev
 Type check:
 
 npx tsc --noEmit
+
 🗺️ Roadmap
+
 Phase 1 — Core Agent
  Express API
  MCP stdio client
@@ -220,30 +225,37 @@ Phase 1 — Core Agent
  Swap quote routing
  COOK → USDC Solana routing
  Trade tool integration
+
 Phase 2 — Token Intelligence
  Automatic search_tokens resolution
  get_token_info
  Token-symbol disambiguation
  Multi-chain token resolution
+
  Pool discovery
 Phase 3 — Transaction Safety
+
  Explicit transaction confirmation
  Transaction preview
  Slippage controls
  Spend-limit enforcement
  Transaction status tracking
+
  Human-readable transaction summaries
 Phase 4 — DeFi Operations
+
  Transfers
  Staking
  Unstaking
  Pool information
  Liquidity operations
 Phase 5 — NFT & Web3
+
  NFT discovery
  NFT metadata
  Cookie Chain domains
  Launchpad interactions
+
 Phase 6 — User Interface
  Web chat interface
  Wallet dashboard
