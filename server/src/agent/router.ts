@@ -26,6 +26,18 @@ function extractAmount(message: string): number | null {
     }
   }
 
+  const tokenAmountMatch = message.match(
+    /\b(\d+(?:\.\d+)?)\s*(?:COOK|COOKIE|USDC|SOL|MON)\b/i,
+  );
+
+  if (tokenAmountMatch) {
+    const amount = Number(tokenAmountMatch[1]);
+
+    if (Number.isFinite(amount) && amount > 0) {
+      return amount;
+    }
+  }
+
   const amountMatch = message.match(
     /\b(?:amount|for)\s+(\d+(?:\.\d+)?)\b/i,
   );
@@ -40,7 +52,6 @@ function extractAmount(message: string): number | null {
 
   return null;
 }
-
 function extractSwapPair(
   message: string,
 ): {
@@ -48,24 +59,16 @@ function extractSwapPair(
   outputToken: string;
 } | null {
   const match = message.match(
-    /\b(?:COOK|USDC|SOL|MON|COOKIE)\s*(?:to|->|→)\s*(?:COOK|USDC|SOL|MON|COOKIE)\b/i,
+    /\b(COOK|COOKIE|USDC|SOL|MON)\s*(?:to|for|->|→)\s*(COOK|COOKIE|USDC|SOL|MON)\b/i,
   );
 
   if (!match) {
     return null;
   }
 
-  const parts = match[0]
-    .split(/\s*(?:to|->|→)\s*/i)
-    .map((token) => token.trim().toUpperCase());
-
-  if (parts.length !== 2) {
-    return null;
-  }
-
   return {
-    inputToken: parts[0],
-    outputToken: parts[1],
+    inputToken: match[1].toUpperCase(),
+    outputToken: match[2].toUpperCase(),
   };
 }
 
@@ -196,7 +199,8 @@ export async function routeAgentMessage(
 
   if (
     normalized.includes("swap") ||
-    normalized.includes("trade")
+    normalized.includes("trade")||
+    normalized.includes("quote")
   ) {
     const amount = extractAmount(message);
 

@@ -59,8 +59,11 @@ app.get("/api/stake-info", async (_req, res) => {
 
 app.get("/api/balance/:wallet", async (req, res) => {
   try {
+    const chain = req.query.chain;
+
     const result = await callMcpTool("get_balance", {
       wallet: req.params.wallet,
+      ...(chain === "solana" ? { chain: "solana" } : {}),
     });
 
     res.json(result);
